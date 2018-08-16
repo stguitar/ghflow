@@ -31,7 +31,6 @@ exports.checkRepoStatus = function() {
 exports.getRepositoryOwnerAndName = function() {
 	return new Promise(function(resolve, reject){
 		git.raw(['config','--get', 'remote.origin.url']).then(function(data){
-			// data = 'git@github.com:ClearPoint-Strategy/mail-manager.git\n'
 			const repoData = (data.replace('.git\n', '').split(':')[1]).split('/');
 			resolve({owner: repoData[0], name: repoData[1]})
 		});
