@@ -57,7 +57,7 @@ exports.checkConfigFile = function() {
 	});
 };
 
-exports.runInitProcess = function(callback) {
+exports.runInitProcess = function() {
 	return promptForConfigFile();
 };
 

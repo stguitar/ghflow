@@ -8,7 +8,7 @@ const homedir = os.homedir();
 if (fs.existsSync(homedir + '/.ghflow/config')) {
 	displayHelpMessage();
 } else {
-	utilities.runInitProcess.then(function(){
+	utilities.runInitProcess().then(function(){
 		console.log(chalk.green('Success!  Now run following the common usage!'));
 		displayHelpMessage();
 	});
