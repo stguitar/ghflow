@@ -16,10 +16,10 @@ exports.checkRepoStatus = function() {
 				process.exit(1);
 			} else {
 				git.status().then(function(status) {
-					if (status.staged.length > 0 || status.modified.length > 0 || status.files.length > 0) {
+					if (status.staged.length > 0 || status.modified.length > 0) {
 						console.log('Staged: ' + status.staged.length);
 						console.log('Modified Files: ' + status.modified.length);
-						console.log('Files: ' + status.files.length);
+						// console.log('Files: ' + status.files.length);
 						console.log(chalk.yellow('This project has pending changes. Release not created.'));
 						reject();
 					} else {
