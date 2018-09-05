@@ -1,7 +1,5 @@
 #!/usr/bin/env node --harmony
 'use strict';
-const co = require('co');
-const prompt = require('co-prompt');
 const program = require('commander');
 const chalk = require('chalk');
 const utilities = require('./utilities');
