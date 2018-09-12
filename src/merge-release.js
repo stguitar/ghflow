@@ -10,18 +10,23 @@ nconf.file(homedir + '/.ghflow/config');
 
 exports.mergeReleaseBranch = function(releaseBranch, sourceBranch) {
 	return new Promise(function(resolve, reject){
-		console.log(chalk.cyan(`Merging ${releaseBranch} into ${sourceBranch}...`));
-		git.mergeFromTo(releaseBranch, sourceBranch).then(function(mergeResults){
-			console.log(chalk.cyan(`Pushing ${sourceBranch}...`));
-			git.push('origin', sourceBranch).then(function(pushError, pushResults){
-				resolve();
-			}).catch(function(pushError){
-				console.log(pushError);
+		console.log(chalk.cyan(`Checking out ${sourceBranch}...`));
+		git.checkout(sourceBranch).then(function(){
+			console.log(chalk.cyan(`Merging ${releaseBranch} into ${sourceBranch}...`));
+			git.mergeFromTo(releaseBranch, sourceBranch).then(function(mergeResults){
+				console.log(chalk.cyan(`Pushing ${sourceBranch}...`));
+				git.push('origin', sourceBranch).then(function(pushError, pushResults){
+					resolve();
+				}).catch(function(pushError){
+					console.log(pushError);
+					reject();
+				});
+				console.log(mergeResults);
+				resolve()
+			}).catch(function(mergeError){
+				console.log(mergeError);
 				reject();
-			});
-		}).catch(function(mergeError){
-			console.log(mergeError);
-			reject();
+			})
 		})
 	});
 };
