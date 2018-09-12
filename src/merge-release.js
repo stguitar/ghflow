@@ -43,6 +43,9 @@ exports.createGitHubRelease = function(owner, repo, targetBranch, tagName, tagDe
 		console.log(chalk.cyan(`Creating tag ${tagName} for ${targetBranch} at repo: ${owner}/${repo}`));
 		octokit.repos.createRelease({owner: owner, repo: repo, tag_name: tagName, target_commitish: targetBranch, name: tagDescription, body: tagDescription}).then(result => {
 			resolve();
+		}).catch(function(tagError){
+			console.log(chalk.red('Unable to create GitHub tag! Does it already exist?'));
+			resolve();
 		})
 	});
 };
