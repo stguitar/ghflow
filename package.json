@@ -1,6 +1,6 @@
 {
   "name": "ghflow",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "CLI tool for handling GitFlow branches with publishing GitHub Releases",
   "main": "./src/ghflow.js",
   "scripts": {
