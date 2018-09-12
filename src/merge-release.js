@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const Promise = require('bluebird');
 const nconf = require('nconf');
 const os = require('os');
+const git = require('simple-git/promise')();
 
 const homedir = os.homedir();
 nconf.file(homedir + '/.ghflow/config');
