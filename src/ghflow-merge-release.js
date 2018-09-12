@@ -53,14 +53,14 @@ utilities.checkConfigFile().then(function() {
 				process.exit(1);
 			}
 			version = result.version;
-			performWorkflow();
+			performWorkflow(version, releaseBranch, tagTarget, devBranch);
 		});
 	} else {
-		performWorkflow();
+		performWorkflow(version, releaseBranch, tagTarget, devBranch);
 	}
 });
 
-function performWorkflow() {
+function performWorkflow(version, releaseBranch, tagTarget, devBranch) {
 	utilities.checkRepoStatus().then(function (currentBranch) {
 		console.log(chalk.magenta('You are currently on the ' + currentBranch + ' branch'));
 		utilities.getRepositoryOwnerAndName().then(function (repoData) {
