@@ -12,7 +12,9 @@ exports.mergeReleaseBranch = function(releaseBranch, sourceBranch) {
 	return new Promise(function(resolve, reject){
 		console.log(chalk.cyan(`Merging ${releaseBranch} into ${sourceBranch}...`));
 		git.mergeFromTo(releaseBranch, sourceBranch).then(function(){
-			resolve();
+			git.push('origin', sourceBranch).then(function(){
+				resolve();
+			});
 		});
 	});
 };
